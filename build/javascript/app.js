@@ -4,7 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const tempDescription = document.querySelector('.temp-description');
   const tempDegree = document.querySelector('.temp-degree');
   const locLocation = document.querySelector('.loc-location');
-
+  const tempPrecipitation = document.querySelector('.temp-precipitation')
+  
   let noDecision = true;
   let temp;
 
@@ -31,15 +32,15 @@ window.addEventListener('DOMContentLoaded', () => {
     const proxy = 'https://cors-anywhere.herokuapp.com/';
     const weatherAPI = `${proxy}https://api.darksky.net/forecast/1c9aa3f4a39a987be8e736bd3a9764e1/${lat},${lng}`;
     const locationAPI = `${proxy}https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=${lat},${lng}&mode=retrieveAddresses&maxresults=1&app_id=${appID}&app_code=${appCode}`;
-    //Fetch API and display data to user
+    //Fetch DarkSky API
     fetch(weatherAPI)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        dataToUser(data);
+        weatherToUser(data);
       });
-
+    //Fetch Here API
     fetch(locationAPI)
       .then((response) => {
         return response.json();
@@ -58,12 +59,13 @@ window.addEventListener('DOMContentLoaded', () => {
     tempDescription.innerHTML = 'For this app work properly, you need to allow your location access!';
   }
 
-  const dataToUser = (data) => {
+  const weatherToUser = (data) => {
     console.log(data);
     temp = data.currently.temperature;
     temperatureScaleToggler(temp);
     tempDescription.innerHTML = data.hourly.summary;
     locLocation.innerHTML = data.timezone;
+    tempPrecipitation.innerHTML = `${data.currently.precipProbability * 100}% chance of ${data.currently.precipType}!`;
   }
 
   //Toggles scale between C and F

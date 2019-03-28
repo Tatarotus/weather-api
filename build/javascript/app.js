@@ -64,8 +64,7 @@ window.addEventListener('DOMContentLoaded', () => {
     temp = data.currently.temperature;
     temperatureScaleToggler(temp);
     tempDescription.innerHTML = data.hourly.summary;
-    locLocation.innerHTML = data.timezone;
-    tempPrecipitation.innerHTML = `${data.currently.precipProbability * 100}% chance of ${data.currently.precipType}!`;
+    tempPrecipitation.innerHTML = `${data.currently.precipProbability * 100}% chance of ${data.currently.precipType}`;
   }
 
   //Toggles scale between C and F

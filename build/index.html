@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="./style.css"/>
-  <title>Weather</title>
-</head>
-<body>
-  <div class="container">
-    <div class="loc">
-      <h1 class="loc-location">Lilliput and Blefuscu</h1>
-      <span class="loc-weather-icon">icon.svg</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Weather</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="loc">
+        <h1 class="loc-location">Lilliput and Blefuscu</h1>
+        <div class="loc-weather-icon">
+          <canvas id="weather-icon"></canvas>
+        </div>
+      </div>
+      <div class="temp">
+        <h2 class="temp-degree">0°</h2>
+        <h3 class="temp-precipitation"></h3>
+        <div class="temp-description">Hot or Cold, that is the question!</div>
+      </div>
     </div>
-    <div class="temp">
-      <h2 class="temp-degree">0&#176</h2>
-      <h3 class="temp-precipitation"></h3>
-      <div class="temp-description">Hot or Cold, that is the question!</div>
-    </div>
-  </div>
-  <script src="./javascript/app.js"></script>
-</body>
+    <script src="./javascript/skycons.js"></script>
+    <script src="./javascript/app.js"></script>
+  </body>
 </html>

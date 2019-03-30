@@ -72,8 +72,11 @@ window.addEventListener('DOMContentLoaded', () => {
     temp = temperature;
     temperatureScaleToggler(temp);
     tempDescription.innerHTML = data.hourly.summary; //targeted by hour!
-    tempPrecipitation.innerHTML = `${Math.round(data.currently.precipProbability * 100 )}% chance of ${data.currently.precipType}`;
+    if (typeof data.currently.precipType !== 'undefined') {
+      tempPrecipitation.innerHTML = `${Math.round(data.currently.precipProbability * 100 )}% chance of ${data.currently.precipType}`;
+    }
   };
+
 
   function setIcon(icon, iconID) {
     const skycons = new Skycons({color: '#ededed'});

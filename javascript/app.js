@@ -53,7 +53,6 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       .then(data => {
         const address = data.Response.View[0].Result[0].Location.Address;
-        console.log(address);
         locLocation.innerHTML = `${address.District}, ${address.City}`;
       });
   };
@@ -67,24 +66,19 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   const weatherToUser = data => {
-    const {icon, temperature, precipProbability, precipType} = data.currently;
-    console.log(data);
+    const {icon, temperature } = data.currently;
 
-    console.log(icon);
     setIcon(icon, 'weather-icon');
     temp = temperature;
     temperatureScaleToggler(temp);
     tempDescription.innerHTML = data.hourly.summary; //targeted by hour!
-    tempPrecipitation.innerHTML = `${Math.round(
-      precipProbability * 100,
-    )}% chance of ${precipType}`;
+    tempPrecipitation.innerHTML = `${Math.round(data.currently.precipProbability * 100 )}% chance of ${data.currently.precipType}`;
   };
 
   function setIcon(icon, iconID) {
     const skycons = new Skycons({color: '#ededed'});
     let currentIcon = icon.replace(/-/g, '_').toUpperCase();
     skycons.play();
-    console.log(currentIcon);
     return skycons.set(iconID, Skycons[currentIcon]);
   }
   //Toggles scale between C and F

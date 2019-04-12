@@ -53,7 +53,10 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       .then(data => {
         const address = data.Response.View[0].Result[0].Location.Address;
-        locLocation.innerHTML = `${address.District}, ${address.City}`;
+        locLocation.innerHTML =
+          address.District !== 'undefined'
+            ? `${address.District}, ${address.City}`
+            : `${address.City}`;
       });
   };
 
@@ -66,17 +69,18 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   const weatherToUser = data => {
-    const {icon, temperature } = data.currently;
+    const {icon, temperature} = data.currently;
 
     setIcon(icon, 'weather-icon');
     temp = temperature;
     temperatureScaleToggler(temp);
     tempDescription.innerHTML = data.hourly.summary; //targeted by hour!
     if (typeof data.currently.precipType !== 'undefined') {
-      tempPrecipitation.innerHTML = `${Math.round(data.currently.precipProbability * 100 )}% chance of ${data.currently.precipType}`;
+      tempPrecipitation.innerHTML = `${Math.round(
+        data.currently.precipProbability * 100,
+      )}% chance of ${data.currently.precipType}`;
     }
   };
-
 
   function setIcon(icon, iconID) {
     const skycons = new Skycons({color: '#ededed'});

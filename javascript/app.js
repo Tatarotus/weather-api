@@ -54,9 +54,11 @@ window.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         const address = data.Response.View[0].Result[0].Location.Address;
         locLocation.innerHTML =
-          address.District !== 'undefined'
+          address.District && address.City
             ? `${address.District}, ${address.City}`
-            : `${address.City}`;
+            : address.City
+            ? `${address.City}`
+            : 'Narnia';
       });
   };
 
@@ -75,7 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
     temp = temperature;
     temperatureScaleToggler(temp);
     tempDescription.innerHTML = data.hourly.summary; //targeted by hour!
-    if (typeof data.currently.precipType !== 'undefined') {
+    if (typeof data.currently.precipType) {
       tempPrecipitation.innerHTML = `${Math.round(
         data.currently.precipProbability * 100,
       )}% chance of ${data.currently.precipType}`;

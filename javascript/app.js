@@ -77,7 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
     temp = temperature;
     temperatureScaleToggler(temp);
     tempDescription.innerHTML = data.hourly.summary; //targeted by hour!
-    if (typeof data.currently.precipType) {
+    if (data.currently.precipType && data.currently.precipProbability) {
       tempPrecipitation.innerHTML = `${Math.round(
         data.currently.precipProbability * 100,
       )}% chance of ${data.currently.precipType}`;

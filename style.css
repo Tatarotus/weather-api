@@ -12,6 +12,8 @@ body {
   height: 100vh;
   font-family: 'Noto Sans', sans-serif;
   overflow: hidden;
+  ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 #weather-icon {
